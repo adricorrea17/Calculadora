@@ -8,12 +8,18 @@ export default class {
         this.numero = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         this.operators = ['+','-','/','*'];
 
-        this.form.innerHTML = `<input type="textfield" class="resultado" value="" placeholder = 0></input>`;
+        
+        
+        this.form.innerHTML = `<input type="textfield" class="resultado w-full p-3 rounded mb-4 bg-gray-600 text-white" value="" placeholder = 0></input>`;
         this.element.append(this.form);
 
-        let btnNumber = new ButtonNumber(this.numero, this.element);
-        let btnOperator = new ButtonOperator(this.element, this.operators);
-        let btnResult = new BtnResult(this.element);
+        let divNumbers = document.createElement('div')
+        divNumbers.classList.add('grid' , 'grid-cols-3')
+        this.element.append(divNumbers)
+        
+        let btnNumber = new ButtonNumber(this.numero, this.element, divNumbers);
+        let btnOperator = new ButtonOperator(this.element, this.operators, divNumbers);
+        let btnResult = new BtnResult(this.element, divNumbers);
 
 
 
@@ -30,7 +36,11 @@ export default class {
         let resultadoInput = document.querySelector('.resultado');
         let numeros = document.querySelectorAll('.numero');
         let operacion = '';
-
+    
+        resultadoInput.addEventListener('input', function() {
+            let newValue = resultadoInput.value.replace(/[^0-9\+\-\*\/]/g, '');
+            resultadoInput.value = newValue;
+        });
         numeros.forEach(element => {
             element.addEventListener('click', () => {
                 operacion += element.value;

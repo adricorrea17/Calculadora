@@ -1,10 +1,11 @@
 export default class {
-    constructor(element) {
+    constructor(element, div) {
         this.element = element;
+        this.divNumber = div
     }
 
     createElementButtonResult() {  
-            this.element.innerHTML += `<input type="button" class="btnResult" value="=">`
-            this.element.innerHTML += `<input type="button" class="btnReset" value="C">`
+        this.divNumber.innerHTML += `<input type="button" class="btnResult bg-green-600 rounded mb-3 p-3 mx-5 hover:bg-green-400 text-white  border-2 border-white" value="=">`
+        this.divNumber.innerHTML += `<input type="button" class="btnReset bg-red-600 rounded mb-3 p-3 mx-5 hover:bg-red-400 text-white  border-2 border-white" value="C">`
     }
 }
